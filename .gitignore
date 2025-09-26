@@ -1,0 +1,66 @@
+# Visual Studio
+.vscode/
+.vs/
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+.vscode/extensions.json
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.vscode/launch.json
+.vscode/.*
+**/.vscode/
+*.userprefs
+
+# Rider
+.idea/
+.idea/*
+
+# Build
+bin/
+obj/
+out/
+!.gitkeep
+*.log
+*.tlog
+*.log/
+*.tlog/
+*.ilk
+*.pdb
+*.obj
+*.pyc
+*.pyo
+*.dot
+*.vspx
+*.err
+*.coverage
+
+
+# Debugging
+*.log
+*.csproj.user
+
+# DotNet dependencies
+packages/
+*.nupkg
+*.snupkg
+.nuget/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Npm dependencies
+node_modules/
+
+# Web config
+libman.json
+logfile.txt
+
+# Resharper
+_ReSharper.Caches/
+
+# Test Results
+TestResults/
+*.trx

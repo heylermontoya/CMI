@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.25" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Cosmos" Version="6.0.25" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.25" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlserver" Version="6.0.25" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.25" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0" />
+		<PackageReference Include="Dapper" Version="2.1.24" />
+
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\CMI.Domain\CMI.Domain.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Update="Constants\MessageConstants.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>MessageConstants.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Update="Constants\MessageConstants.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>MessageConstants.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+</Project>
