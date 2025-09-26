@@ -109,5 +109,13 @@ namespace CMI.Domain.Services
                 throw new ValidatorException(MessagesExceptions.DuplicatedProductName);
             }
         }
+
+        public async Task DeleteProductoAsync(
+            int id
+        )
+        {
+            Producto producto = await (GetProductoById(id));
+            await productoRepository.DeleteAsync(producto);
+        }
     }
 }

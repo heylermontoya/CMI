@@ -48,5 +48,15 @@ namespace CMI.Api.Controllers
 
             return new OkObjectResult(listProductoDto);
         }
+
+        [HttpDelete("ProductoById/{id}")]
+        public async Task<IActionResult> DeleteProductoById(int id)
+        {
+            await mediator.Send(
+                 new DeleteProductoByIdCommand(id)
+             );
+
+            return new NoContentResult();
+        }
     }
 }
