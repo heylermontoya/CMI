@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CMI.Infrastructure.Migrations
 {
     [DbContext(typeof(PersistenceContext))]
-    [Migration("20250925234445_Inicial")]
+    [Migration("20250929223648_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace CMI.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("CMI.Domain.Entities.Producto", b =>
+            modelBuilder.Entity("CMI.Domain.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -32,15 +32,15 @@ namespace CMI.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Descripcion")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Nombre")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Precio")
+                    b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Stock")
@@ -48,7 +48,7 @@ namespace CMI.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Producto", "dbo");
+                    b.ToTable("Product", "dbo");
                 });
 #pragma warning restore 612, 618
         }
