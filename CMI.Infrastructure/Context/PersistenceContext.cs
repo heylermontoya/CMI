@@ -18,7 +18,7 @@ namespace CMI.Infrastructure.Context
             await SaveChangesAsync().ConfigureAwait(false);
         }
 
-        public DbSet<Producto> Producto => Set<Producto>();
+        public DbSet<Product> Product => Set<Product>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -31,7 +31,7 @@ namespace CMI.Infrastructure.Context
 
             #region Models
 
-            modelBuilder.Entity<Producto>(entity =>
+            modelBuilder.Entity<Product>(entity =>
             {
                 entity.HasKey(e => e.Id);
 

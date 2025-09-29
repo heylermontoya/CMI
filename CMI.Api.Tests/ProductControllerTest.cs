@@ -1,6 +1,5 @@
 ﻿using CMI.Application.DTOs;
 using CMI.Application.Feature.product.Commands;
-using CMI.Domain.Entities;
 using CMI.Domain.QueryFilters;
 using Newtonsoft.Json;
 using System.Net;
@@ -8,9 +7,9 @@ using System.Net;
 namespace CMI.Api.Tests
 {
     [TestFixture]
-    public class ProductoControllerTest
+    public class ProductControllerTest
     {
-        private const string PARAMETER_PATH = "api/Producto";
+        private const string PARAMETER_PATH = "api/product";
 
         private TestStartup<Program>? factory;
         private HttpClient? httpClient;
@@ -37,7 +36,7 @@ namespace CMI.Api.Tests
         }
 
         [Test]
-        public async Task ObtainListproductossAsync()
+        public async Task ObtainListProductsAsync()
         {
             // Arrange
             List<FieldFilter> fieldFilters = [];
@@ -59,26 +58,26 @@ namespace CMI.Api.Tests
             result.EnsureSuccessStatusCode();
 
             string data = await result.Content.ReadAsStringAsync();
-            List<ProductoDto>? listproductoDto = JsonConvert.DeserializeObject<List<ProductoDto>>(data);
+            List<ProductDto>? listProductDto = JsonConvert.DeserializeObject<List<ProductDto>>(data);
 
             // Assert
             Assert.Multiple(() =>
             {
                 Assert.That(result.StatusCode, Is.EqualTo(HttpStatusCode.OK));
-                Assert.That(listproductoDto, Is.Not.Null);
-                Assert.That(listproductoDto, Is.Not.Empty);
+                Assert.That(listProductDto, Is.Not.Null);
+                Assert.That(listProductDto, Is.Not.Empty);
             });
         }
 
         [Test]
-        public async Task ObtainproductoAsync_Ok()
+        public async Task ObtainProductAsync_Ok()
         {
             //Arrange
-            int productoId = 1;
+            int productId = 1;
 
             HttpRequestMessage requestMessage = new(
                 HttpMethod.Get,
-                new Uri($"{PARAMETER_PATH}/ProductoById/{productoId}", UriKind.Relative)
+                new Uri($"{PARAMETER_PATH}/productById/{productId}", UriKind.Relative)
             );
 
             //Act
@@ -87,24 +86,24 @@ namespace CMI.Api.Tests
             result.EnsureSuccessStatusCode();
 
             string data = await result.Content.ReadAsStringAsync();
-            ProductoDto? productoDto = JsonConvert.DeserializeObject<ProductoDto>(data);
+            ProductDto? productDto = JsonConvert.DeserializeObject<ProductDto>(data);
 
             //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(result.StatusCode, Is.EqualTo(HttpStatusCode.OK));
-                Assert.That(productoDto, Is.Not.Null);
-                Assert.That(productoDto!.Id, Is.EqualTo(productoId));
+                Assert.That(productDto, Is.Not.Null);
+                Assert.That(productDto!.Id, Is.EqualTo(productId));
             });
         }
 
         [Test]
-        public async Task CreateproductoAsync_Ok()
+        public async Task CreateProductAsync_Ok()
         {
             //Arrange
-            CreateProductoCommand createproductoCommand = new(
-                "nombreProducto",
-                 "descripcionProducto",
+            CreateProductCommand createProductCommand = new(
+                "nameProduct",
+                 "descriptionProduct",
                  1500,
                  10
             );
@@ -115,7 +114,7 @@ namespace CMI.Api.Tests
             )
             {
                 Content = new StringContent(
-                    System.Text.Json.JsonSerializer.Serialize(createproductoCommand),
+                    System.Text.Json.JsonSerializer.Serialize(createProductCommand),
                     System.Text.Encoding.UTF8,
                     "application/json"
                 )
@@ -126,30 +125,30 @@ namespace CMI.Api.Tests
 
             result.EnsureSuccessStatusCode();
             string data = await result.Content.ReadAsStringAsync();
-            ProductoDto? productoDto = JsonConvert.DeserializeObject<ProductoDto>(data);
+            ProductDto? productDto = JsonConvert.DeserializeObject<ProductDto>(data);
 
             //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(result.StatusCode, Is.EqualTo(HttpStatusCode.Created));
-                Assert.That(productoDto, Is.Not.Null);
-                Assert.That(productoDto!.Nombre, Is.EqualTo(createproductoCommand.Nombre));
-                Assert.That(productoDto!.Descripcion, Is.EqualTo(createproductoCommand.Descripcion));
-                Assert.That(productoDto!.Precio, Is.EqualTo(createproductoCommand.Precio));
-                Assert.That(productoDto!.Stock, Is.EqualTo(createproductoCommand.Stock));
+                Assert.That(productDto, Is.Not.Null);
+                Assert.That(productDto!.Name, Is.EqualTo(createProductCommand.Name));
+                Assert.That(productDto!.Description, Is.EqualTo(createProductCommand.Description));
+                Assert.That(productDto!.Price, Is.EqualTo(createProductCommand.Price));
+                Assert.That(productDto!.Stock, Is.EqualTo(createProductCommand.Stock));
             });
         }
 
         [Test]
-        public async Task UpdateCustomerAsync_Ok()
+        public async Task UpdateProductAsync_Ok()
         {
             //Arrange
-            UpdateProductoCommand updateproductoCommand = new(
+            UpdateProductCommand updateProductCommand = new(
                 1,
-                "John Orjuela",
-                 "123 Main St, New York",
-                 15,
-                 1
+                "nameProductUpdate",
+                "descriptionProductUpdate",
+                15,
+                1
             );
 
             HttpRequestMessage requestMessage = new(
@@ -158,7 +157,7 @@ namespace CMI.Api.Tests
             )
             {
                 Content = new StringContent(
-                    System.Text.Json.JsonSerializer.Serialize(updateproductoCommand),
+                    System.Text.Json.JsonSerializer.Serialize(updateProductCommand),
                     System.Text.Encoding.UTF8,
                     "application/json"
                 )
@@ -169,18 +168,18 @@ namespace CMI.Api.Tests
 
             result.EnsureSuccessStatusCode();
             string data = await result.Content.ReadAsStringAsync();
-            ProductoDto? productoDto = JsonConvert.DeserializeObject<ProductoDto>(data);
+            ProductDto? productDto = JsonConvert.DeserializeObject<ProductDto>(data);
 
             //Assert
             Assert.Multiple(() =>
             {
                 Assert.That(result.StatusCode, Is.EqualTo(HttpStatusCode.OK));
-                Assert.That(productoDto, Is.Not.Null);
-                Assert.That(productoDto!.Id, Is.EqualTo(updateproductoCommand.Id));
-                Assert.That(productoDto!.Nombre, Is.EqualTo(updateproductoCommand.Nombre));
-                Assert.That(productoDto!.Descripcion, Is.EqualTo(updateproductoCommand.Descripcion));
-                Assert.That(productoDto!.Precio, Is.EqualTo(updateproductoCommand.Precio));
-                Assert.That(productoDto!.Stock, Is.EqualTo(updateproductoCommand.Stock));
+                Assert.That(productDto, Is.Not.Null);
+                Assert.That(productDto!.Id, Is.EqualTo(updateProductCommand.Id));
+                Assert.That(productDto!.Name, Is.EqualTo(updateProductCommand.Name));
+                Assert.That(productDto!.Description, Is.EqualTo(updateProductCommand.Description));
+                Assert.That(productDto!.Price, Is.EqualTo(updateProductCommand.Price));
+                Assert.That(productDto!.Stock, Is.EqualTo(updateProductCommand.Stock));
             });
         }
     }

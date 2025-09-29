@@ -63,16 +63,16 @@ namespace CMI.Infrastructure.Constants {
         /// <summary>
         ///   Busca una cadena traducida similar a SELECT 
         ///      [Id]
-        ///      ,[Nombre]
-        ///      ,[Descripcion]
-        ///      ,[Precio]
+        ///      ,[Name]
+        ///      ,[Description]
+        ///      ,[Price]
         ///      ,[Stock]
-        ///  FROM [CMI].[dbo].[Producto]
+        ///  FROM [CMI].[dbo].[Product]
         ///  {0}.
         /// </summary>
-        internal static string GetProductos {
+        internal static string GetProducts {
             get {
-                return ResourceManager.GetString("GetProductos", resourceCulture);
+                return ResourceManager.GetString("GetProducts", resourceCulture);
             }
         }
     }

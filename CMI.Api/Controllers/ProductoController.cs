@@ -9,51 +9,51 @@ namespace CMI.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductoController(IMediator mediator)
+    public class ProductController(IMediator mediator)
     {
         [HttpPost]
-        public async Task<IActionResult> CreateProductotAsync(CreateProductoCommand command)
+        public async Task<IActionResult> CreateProductAsync(CreateProductCommand command)
         {
-            ProductoDto ProductoDto = await mediator.Send(command);
+            ProductDto ProductDto = await mediator.Send(command);
 
-            return new CreatedResult($"Producto/{ProductoDto.Id}", ProductoDto);
+            return new CreatedResult($"Product/{ProductDto.Id}", ProductDto);
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateProductoAsync(UpdateProductoCommand command)
+        public async Task<IActionResult> UpdateProductAsync(UpdateProductCommand command)
         {
-            ProductoDto ProductoDto = await mediator.Send(command);
+            ProductDto ProductDto = await mediator.Send(command);
 
-            return new OkObjectResult(ProductoDto);
+            return new OkObjectResult(ProductDto);
         }
 
-        [HttpGet("ProductoById/{id}")]
-        public async Task<IActionResult> GetProductoById(int id)
+        [HttpGet("productById/{id}")]
+        public async Task<IActionResult> GetProductById(int id)
         {
-            ProductoDto ProductoDto = await mediator.Send(
-                 new GetProductoByIdQuery(id)
+            ProductDto ProductDto = await mediator.Send(
+                 new GetProductByIdQuery(id)
              );
 
-            return new OkObjectResult(ProductoDto);
+            return new OkObjectResult(ProductDto);
         }
 
         [HttpPost("list")]
-        public async Task<IActionResult> ObtainListProductoAsync(
+        public async Task<IActionResult> ObtainListProductAsync(
             IEnumerable<FieldFilter>? fieldFilter
         )
         {
-            List<ProductoDto> listProductoDto = await mediator.Send(
-                new GetListProductoQuery(fieldFilter)
+            List<ProductDto> listProductDto = await mediator.Send(
+                new GetListProductQuery(fieldFilter)
             );
 
-            return new OkObjectResult(listProductoDto);
+            return new OkObjectResult(listProductDto);
         }
 
-        [HttpDelete("ProductoById/{id}")]
-        public async Task<IActionResult> DeleteProductoById(int id)
+        [HttpDelete("productById/{id}")]
+        public async Task<IActionResult> DeleteProductById(int id)
         {
             await mediator.Send(
-                 new DeleteProductoByIdCommand(id)
+                 new DeleteProductByIdCommand(id)
              );
 
             return new NoContentResult();

@@ -1,9 +1,8 @@
-﻿using CMI.Application.DTOs;
-using MediatR;
+﻿using MediatR;
 
 namespace CMI.Application.Feature.product.Commands
 {
-    public record DeleteProductoByIdCommand(
+    public record DeleteProductByIdCommand(
         int Id
     ) : IRequest<Unit>;
 }

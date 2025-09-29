@@ -1,6 +1,4 @@
-﻿using NUnit.Framework;
-
-namespace CMI.Api.Tests
+﻿namespace CMI.Api.Tests
 {
     [SetUpFixture]
     public class GlobalTestSetup
@@ -8,7 +6,6 @@ namespace CMI.Api.Tests
         [OneTimeSetUp]
         public void GlobalSetup()
         {
-            // Configuración global si es necesario
         }
     }
 }

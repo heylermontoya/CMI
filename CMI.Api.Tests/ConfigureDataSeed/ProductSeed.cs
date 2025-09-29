@@ -7,7 +7,7 @@ namespace CMI.Api.Tests.ConfigureDataSeed
     {
         public static void ConfigureDataSeed(PersistenceContext context)
         {
-            ProductoBuilder _builderRegisterForDeleted = new();
+            ProductBuilder _builderRegisterForDeleted = new();
             context.Add(
                 _builderRegisterForDeleted
                     .WithId(1)

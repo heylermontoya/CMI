@@ -3,7 +3,7 @@ using CMI.Application.DTOs;
 
 namespace CMI.Application.Feature.product.Queries
 {
-    public record GetProductoByIdQuery(
+    public record GetProductByIdQuery(
         int Id
-    ) : IRequest<ProductoDto>;
+    ) : IRequest<ProductDto>;
 }

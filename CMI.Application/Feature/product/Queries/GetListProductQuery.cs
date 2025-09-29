@@ -4,7 +4,7 @@ using CMI.Domain.QueryFilters;
 
 namespace CMI.Application.Feature.product.Queries
 {
-    public record GetListProductoQuery(
+    public record GetListProductQuery(
         IEnumerable<FieldFilter>? FieldFilter
-    ) : IRequest<List<ProductoDto>>;
+    ) : IRequest<List<ProductDto>>;
 }

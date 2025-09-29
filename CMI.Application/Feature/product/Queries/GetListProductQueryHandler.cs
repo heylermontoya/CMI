@@ -7,21 +7,21 @@ using CMI.Domain.QueryFilters;
 
 namespace CMI.Application.Feature.product.Queries
 {
-    public class GetListProductoQueryHandler(
+    public class GetListProductQueryHandler(
         IQueryWrapper queryWrapper
-    ) : IRequestHandler<GetListProductoQuery, List<ProductoDto>>
+    ) : IRequestHandler<GetListProductQuery, List<ProductDto>>
     {
-        public async Task<List<ProductoDto>> Handle(
-            GetListProductoQuery query,
+        public async Task<List<ProductDto>> Handle(
+            GetListProductQuery query,
             CancellationToken cancellationToken
         )
         {
             List<FieldFilter> listFilters = query.FieldFilter != null ? query.FieldFilter.ToList() : [];
 
-            IEnumerable<ProductoDto> properties =
+            IEnumerable<ProductDto> properties =
                 await queryWrapper
-                    .QueryAsync<ProductoDto>(
-                        ItemsMessageConstants.GetProductos
+                    .QueryAsync<ProductDto>(
+                        ItemsMessageConstants.GetProducts
                             .GetDescription(),
                         new
                         { },

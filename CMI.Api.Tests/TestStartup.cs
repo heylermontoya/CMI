@@ -65,7 +65,7 @@ namespace CMI.Api.Tests
                 {
                     appContext.Database.EnsureCreated();
 
-                    #region Producto
+                    #region Product
                     ProductSeed.ConfigureDataSeed(appContext);
                     appContext.SaveChanges();
                     #endregion                    

@@ -117,14 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="GetProductos" xml:space="preserve">
+  <data name="GetProducts" xml:space="preserve">
     <value>SELECT 
       [Id]
-      ,[Nombre]
-      ,[Descripcion]
-      ,[Precio]
+      ,[Name]
+      ,[Description]
+      ,[Price]
       ,[Stock]
-  FROM [CMI].[dbo].[Producto]
+  FROM [CMI].[dbo].[Product]
   {0}</value>
   </data>
 </root>
